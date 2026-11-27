@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "upstreamURL": "https://github.com/1Blocker/BloomBuilderKit.git",
+  "version": "0.2.0",
+  "revision": "5a2e0ee05b16119e445a4005f0c300e8c4b69ac1",
+  "treeFileCount": 28,
+  "treeDigestAlgorithm": "sha256-length-prefixed-path-and-content-v1",
+  "treeSHA256": "70af8c9665f73af8197bfdc43897e8b1232982563fdb387ce672f1dc739b2a59"
+}

@@ -1,0 +1,2 @@
+url-filter-canary.1blocker.com
+www.apple.com/url-filter-test

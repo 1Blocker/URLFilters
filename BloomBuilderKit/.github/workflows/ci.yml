@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    name: macOS / Swift 6
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show Swift version
+        run: swift --version
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test
+      - name: Verify exported tree
+        run: sh .github/scripts/check-exported-tree.sh
+
+  linux:
+    name: Linux / Swift 6
+    runs-on: ubuntu-latest
+    container:
+      image: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show Swift version
+        run: swift --version
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test
+      - name: Verify exported tree
+        run: sh .github/scripts/check-exported-tree.sh

@@ -1,0 +1,124 @@
+NOTICE — 1Blocker URL-filter open layer, release v20261127T052309Z (2026-11-27)
+=========================================================================
+
+This release contains the open (EasyList-derived) layer of the 1Blocker
+URL-filter data set. Paths in sections 1 through 3 are relative to the
+root of the source archive of this release.
+
+1. upstream/easylist.txt — VERBATIM COPY
+
+   An unofficial, byte-exact mirror of EasyList, conveyed verbatim
+   (GPLv3 section 4) with all upstream header notices intact.
+
+     Upstream:   https://easylist.to/easylist/easylist.txt
+     Version:    202611250603
+                 (upstream "! Version" header)
+     Retrieved:  2026-11-25T06:10:45.445Z
+                 (start of the retrieval run)
+     SHA-256:    aaf95788a65718310803ecfa5125a3390c230210ceed67c17db8959cc53ffd80
+
+   EasyList is copyright The EasyList authors (https://easylist.to),
+   dual-licensed GPL-3.0-or-later / CC BY-SA 3.0-or-later; used here
+   under GPL-3.0-or-later. Copies of both licenses are included in
+   the source archive (LICENSES/).
+   This mirror is not endorsed by or affiliated with the EasyList
+   project.
+
+2. layers/easylist/canonical-keys.txt — MODIFIED VERSION OF EASYLIST
+
+   MODIFICATION NOTICE (GPLv3 section 5(a)): this file is a modified
+   version of EasyList, produced by 1Blocker on 2026-11-25 from the
+   exact snapshot identified above (canonicalizer version
+   v3).
+
+   Nature of the modification: EasyList's network-blocking rules have
+   been translated into exact-match URL keys — one `host` or
+   `host/path` per line — for Apple's NEURLFilter system (on-device
+   Bloom prefilter + private-information-retrieval lookup). The policy
+   is to choose keys that match only URLs their source rules would
+   block. A key for a directory rule ending in a slash can also match
+   the path without that slash. The system applies keys across apps
+   and request types, including top-level navigations. An allowlist
+   exception that exempts a whole page is honored only for requests to
+   that page itself; requests made from that page can still be blocked.
+   Cosmetic and scriptlet rules, blocking rules with `$` options,
+   and regex and unanchored patterns are omitted. Some rules limited
+   by allowlist exceptions are also omitted. Substantial parts of
+   EasyList are therefore not represented in this file, and it is not a
+   general-purpose filter list.
+
+   License: EasyList is used here under its GPL-3.0-or-later option;
+   this modified version is conveyed under the GNU General Public
+   License version 3 or (at your option) any later version. The full
+   license text is listed in section 3 below. The upstream CC BY-SA
+   option is not extended to this modified version. Copyright in the
+   upstream rules remains with the EasyList authors; 1Blocker licenses
+   its modifications under the same terms.
+
+   This file is the complete source form of the modified work: plain
+   text, directly editable, and directly consumable by the included
+   reference Bloom builder, using the build instructions listed in
+   section 3 below.
+
+3. ALSO IN THE SOURCE ARCHIVE
+
+   LICENSES/GPL-3.0.txt
+     GNU General Public License v3 (full text)
+   LICENSES/CC-BY-SA-3.0.txt
+     CC Attribution-ShareAlike 3.0 (full text; the upstream file's
+     alternative license)
+   mandatory-keys.txt
+     separate 1Blocker system-layer data (Apple's onboarding-validation
+     entry and the 1Blocker diagnostic canary); not derived from EasyList
+     and not part of the modified work described in section 2.
+     1Blocker licenses the rights it holds in this file under
+     GPL-3.0-or-later.
+   BUILD.md
+     how to build the Bloom prefilter from the canonical and mandatory
+     key files
+   BloomBuilderKit
+     the reference Bloom builder, a separate work under the MIT License
+     in the LICENSE file in this directory
+
+4. BLOOM PREFILTER AND CORRESPONDING SOURCE
+
+   The Bloom prefilter for Apple's NEURLFilter system is a bit vector.
+   The included builder's bloombuilder command produced it from every
+   key in the canonical key file and every key in the mandatory key
+   file of this release, and from nothing else. The build document
+   listed in section 3 records the inputs, the parameters and the
+   expected output identity.
+
+   The public release carries the vector as prefilter.bloom.
+   1Blocker conveys the vector in object-code form under the
+   GNU General Public License version 3 or (at your option) any later
+   version, by offering access from a designated place (GPLv3
+   section 6(d)).
+
+   The complete corresponding source is offered at no charge as
+   payload.aar in the immutable public release at
+   https://github.com/1Blocker/URLFilters/releases/tag/v20261127T052309Z
+
+   The source archive contains both key files, the upstream mirror,
+   the license texts, the build document, the builder and this notice.
+   In the public release, legal-notice.txt contains this notice,
+   followed by the builder's license and the license texts listed in
+   section 3.
+
+   While this release is current on the CloudKit record that serves
+   devices, that record carries the vector in its "prefilterVector"
+   asset, offers the same source archive at no charge in its "archive"
+   asset, and carries the same legal notice in its "legalNotice" asset.
+
+5. SIGNED RELEASE MANIFEST
+
+   manifest.json and its detached signature are carried as release
+   assets alongside the source archive, never inside it. The manifest
+   records the snapshot identity, the canonicalizer version, the key
+   count and SHA-256 of each key file and of their deduplicated union,
+   the Bloom parameters, and the size and SHA-256 of the vector and of
+   the legal notice.
+
+This release is provided without any warranty; see the license texts
+for the full disclaimer. EasyList's authors do not endorse 1Blocker or
+this derived work.
